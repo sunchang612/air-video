@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { baseUrl } from './config'
+import { baseUrl } from '../../utils/config'
 
 export default {
   

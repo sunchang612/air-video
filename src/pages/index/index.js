@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import { AtTabBar } from 'taro-ui'
 import { useSelector, useDispatch } from '@tarojs/redux'
@@ -20,6 +20,13 @@ function Index (){
     SetKids(data)
   }
 
+  // 点击进入 list 页面
+  const onClickToList = (id) => {
+    Taro.navigateTo({
+      url: `/pages/playList/index?id=${id}`,
+    })
+  }
+
   useEffect(() => {
     getInfo()
   }, [])
@@ -32,7 +39,7 @@ function Index (){
       
       <View className="slide-wrapper">
         {
-          kidList.map((item) => <View className="slide-wrap" key={item.id}><Image className="card-image" src="../../assets/images/123123.jpg"/>
+          kidList.map((item) => <View onClick={() => onClickToList(item.id)} className="slide-wrap" key={item.id}><Image className="card-image" src="../../assets/images/123123.jpg"/>
             <Text className="card-text">{item.firstName ? item.firstName : ''}</Text>
           </View>)
         }
